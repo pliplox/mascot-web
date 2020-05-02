@@ -22,5 +22,4 @@ Web application for Pliplox
 We use Jest for testing. Don't push code that doesn't have 100% test coverage.
 Integration tests are always welcome. Remember to test exceptions and edge cases too!
 
-To run the tests use the `npm test` command or if you want to watch the changes while coding
-use the `npm run test:watch` command.
+To run the tests use the `yarn test` command.

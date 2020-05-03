@@ -3,10 +3,11 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build-and-test:
-    branches:
-      only:
-        - master
-        - develop
+    filters: 
+      branches:
+        only:
+          - master
+          - develop
     executor:
       name: node/default
     steps:

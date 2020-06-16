@@ -3,20 +3,18 @@ import { render, fireEvent, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { Navbar, ProfileMenu } from "./../";
 import { Sidebar } from "../../sidebar";
-let { asFragment } = render(<Navbar />);
 
 let wrapper;
 
 describe("Navbar", () => {
   it("should render navbar", () => {
-    expect(asFragment()).toMatchSnapshot();
     expect(render(<Navbar />));
   });
 
   beforeEach(() => {
     wrapper = render(<Navbar />);
   });
-  
+
   it("show the app title", () => {
     const { getByText } = wrapper;
     expect(getByText("Skoll Web")).toBeInTheDocument();

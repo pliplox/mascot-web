@@ -37,14 +37,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     paddingTop: 10,
   },
-  containerTitle: {
-    height: 56,
-    [theme.breakpoints.up("sm")]: {
-      height: 64,
-    },
-    backgroundColor: "#1f285a",
-    paddingLeft: 20,
-  },
+  toolbar:{
+    backgroundColor: theme.palette.primary.dark,
+  }
 }));
 
 const Navbar = ({ children }) => {
@@ -75,9 +70,9 @@ const Navbar = ({ children }) => {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            data-testid="drawer"
+        <Toolbar className={classes.toolbar}>
+          <IconButton  
+            data-testid="drawer"          
             edge="start"
             className={classes.menuButton}
             color="inherit"

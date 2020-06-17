@@ -13,7 +13,7 @@ Web application for Pliplox
 ### Working on the project
 
 * In the project directory: `>_ cd PROJECT_NAME`
-* Run the development task: `yarn start`
+* Run the development task: `yarn server`
 	* Starts the project at http://localhost:3000/
 	* Automatically restarts when any of your files change
 

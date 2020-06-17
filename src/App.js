@@ -1,12 +1,13 @@
 import React from "react";
 import { Navbar } from "./components/shared/navbar";
+import { Fed } from "./components/fed/";
 import SignIn from "./pages/auth/SignIn";
 import PrivateRoute from "./components/private-route";
 import { AuthProvider } from "./context/AuthContext";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -16,13 +17,13 @@ function App() {
               <SignIn />
             </Route>
             <PrivateRoute path="/">
-              <div>Hello</div>
+              <Fed />
             </PrivateRoute>
           </Switch>
         </Navbar>
       </AuthProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

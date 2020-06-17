@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = (email, password) => {
     try {
-      const response = { data: { email, password, tokenId: "cualquiercosa" } };
+      const response = { data: { email, password, groups: [],tokenId: "cualquiercosa" } };
       setUser(response.data); // For now: all data is set to the user
       localStorage.setItem("tokenId", response.data.tokenId);
       console.log(localStorage.getItem("tokenId"));

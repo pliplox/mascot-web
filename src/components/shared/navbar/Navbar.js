@@ -1,5 +1,6 @@
 /*React */
 import React, { useState } from "react";
+import { isAuth } from "../../../context/AuthContext";
 
 /*Component */
 import { Sidebar } from "../sidebar";
@@ -46,10 +47,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const tokenId = localStorage.getItem("tokenId");
+  console.log(tokenId, 'Desde NAVBAR');
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -71,8 +76,8 @@ const Navbar = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton  
-            data-testid="drawer"          
+          <IconButton
+            data-testid="drawer"
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -82,7 +87,7 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Skoll Web
+            Mascot Web
           </Typography>
           <div className={classes.grow} />
           <div>
@@ -105,8 +110,13 @@ const Navbar = () => {
           />
         </Toolbar>
       </AppBar>
-
-      <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />
+      {children}
+      {tokenId && (
+        <Sidebar
+          handleDrawerClose={handleDrawerClose}
+          openDrawer={openDrawer}
+        />
+      )}
     </div>
   );
 };

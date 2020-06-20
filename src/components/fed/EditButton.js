@@ -1,6 +1,6 @@
 import React from "react";
 
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton } from "@material-ui/core/";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
 
@@ -14,7 +14,7 @@ const Editbutton = (props) => {
           onClick={handleEdit}
           name="done"
           size="small"
-          color="secondary"
+          color="primary"
         >
           <DoneOutlineRoundedIcon />
         </IconButton>

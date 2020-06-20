@@ -1,11 +1,5 @@
 import React, { Fragment } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-//Container
-import Container from "@material-ui/core/Container";
-//Grid
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-
+import { makeStyles, Container, Grid, Paper } from "@material-ui/core/";
 import { TableFed } from "./";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +43,7 @@ const Fed = () => {
               </Paper>
             </Grid>
             <TableFed workingday="pm" hidden={["lg", "xl", "md"]} />
-            {/*params: Jornada (pm) */}
+            {/*params: Jornada (pm)  hidden={["lg", "xl", "md"]} */}
           </Grid>
         </Grid>
       </Container>

@@ -1,9 +1,9 @@
 const usuariosTest = [
   "juan perez",
-  "maria rosa",
+/*   "maria rosa",
   "michael jackson",
   "toumas holopainen",
-  "elmo chila",
+  "elmo chila", */
 ];
 
 export default usuariosTest;

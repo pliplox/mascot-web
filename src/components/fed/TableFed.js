@@ -1,23 +1,20 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+  Switch,
+  Hidden,
+  CircularProgress,
+} from "@material-ui/core";
 //SnackBar
 import { useSnackbar } from "notistack";
-//TABLE
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-//Switch
-import Switch from "@material-ui/core/Switch";
-//Hidden
-import Hidden from "@material-ui/core/Hidden";
-//Loading
-import CircularProgress from "@material-ui/core/CircularProgress";
 //Personalizados
 import { EditButton, EditTextField } from "./";
-
 //DATOS EJEMPLO
 import tableroMock from "./table";
 import usuariosTest from "./data";
@@ -35,21 +32,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Tablefed = (props) => {
-  const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
-  const { workingday, hidden } = props;
-  const [tablero, setTablero] = useState(tableroMock);
-  const [open, setOpen] = useState(true);
-
   const date = new Date();
   const d = date.getDay();
   const h = `${date.getHours()}:${date.getMinutes()}`;
-
-  const [hour, setHour] = useState(h);
   const [day, setDay] = useState(d);
-
+  const [hour, setHour] = useState(h);
+  const [tablero, setTablero] = useState(tableroMock);
+  const [open, setOpen] = useState(true);
   const [disabled, setDisabled] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const { workingday, hidden } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     if (isEdit) {
@@ -85,6 +79,11 @@ const Tablefed = (props) => {
     } else {
       if (checked) {
         fed(datenew, id);
+        enqueueSnackbar(
+          "Registro agregado",
+          { variant: "success" },
+          { anchorOrigin: { vertical: "bottom", horizontal: "center" } }
+        );
       }
     }
   };
@@ -118,7 +117,6 @@ const Tablefed = (props) => {
         if (parseInt(id) === today.id) {
           today.edit = true; // icono
           today.disabledAm = true; // switch
-          today.readOnly = false; // text
         }
       });
       setIsEdit(true);
@@ -128,7 +126,6 @@ const Tablefed = (props) => {
         if (parseInt(id) === today.id) {
           today.edit = false; // icono
           today.disabledAm = true; // switch
-          today.readOnly = true; // text
         }
       });
       enqueueSnackbar(
@@ -167,6 +164,7 @@ const Tablefed = (props) => {
                       disabled={row.disabledAm}
                       onChange={handleFed}
                       id={row.id.toString()}
+                      color="primary"
                     ></Switch>
                   </TableCell>
                   <TableCell component="th" scope="row">
@@ -174,6 +172,7 @@ const Tablefed = (props) => {
                       edit={row.edit}
                       id={row.id.toString()}
                       label={row.placeHolderAm}
+                      name="hour"
                       className={classes.inputHour}
                     />
                   </TableCell>
@@ -181,6 +180,7 @@ const Tablefed = (props) => {
                     <EditTextField
                       edit={row.edit}
                       id={row.id.toString()}
+                      name="user"
                       label={row.nameAm}
                     />
                   </TableCell>

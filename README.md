@@ -1,4 +1,4 @@
-# Pet Web (name to be defined)
+# Mascot Web
 
 Web application for Pliplox
 

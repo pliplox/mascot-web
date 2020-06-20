@@ -17,7 +17,7 @@ describe("Navbar", () => {
 
   it("show the app title", () => {
     const { getByText } = wrapper;
-    expect(getByText("Skoll Web")).toBeInTheDocument();
+    expect(getByText("Mascot Web")).toBeInTheDocument();
   });
 
   it("show the icon profile", () => {

@@ -71,7 +71,7 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Mascot Web
+            MascotApp
           </Typography>
           <div className={classes.grow} />
           <div>

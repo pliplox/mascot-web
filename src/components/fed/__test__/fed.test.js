@@ -13,128 +13,120 @@ describe("Fed", () => {
     wrapper = renderWithProvider(<Fed />);
   });
 
-  it("should show Fed", () => {
+  it("show Fed", () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe("show titles and subTitles", () => {
-    it("should show title: Alimentacion", () => {
+  describe("when fed is already render", () => {
+    it("show title: Alimentacion", () => {
       const { getByText } = wrapper;
       expect(getByText("Alimentacion")).toBeInTheDocument();
     });
-    it("should show subTitle: AM", () => {
+    it("show subTitle: AM", () => {
       const { getByText } = wrapper;
       expect(getByText("AM")).toBeInTheDocument();
     });
-    it("should show subTitle: PM", () => {
+    it("show subTitle: PM", () => {
       const { getByText } = wrapper;
       expect(getByText("PM")).toBeInTheDocument();
     });
   });
 
-  it("should show CircularProgress", () => {
+  it("show CircularProgress", () => {
     const { container } = wrapper;
     expect(container.querySelector("circle")).toBeInTheDocument();
   });
 
-  it("should show Table AM and PM ", () => {
-    const { container } = wrapper;
-    act(() => jest.runAllTimers());
-    // await wait();
-    expect(container.querySelector("table")).toBeInTheDocument();
-  });
+  describe("when circular progress it complete", () => {
+    beforeEach(() => {
+      act(() => jest.runAllTimers());
+    });
 
-  it("should show Switches", () => {
-    const { container } = wrapper;
-    act(() => jest.runAllTimers());
-    expect(container.querySelector("input")).toBeInTheDocument();
-  });
+    it("show Table AM and PM ", () => {
+      const { container } = wrapper;
+      expect(container.querySelector("table")).toBeInTheDocument();
+    });
+    it("show all Switches", () => {
+      const { container } = wrapper;
+      expect(container.querySelector("input")).toBeInTheDocument();
+    });
 
-  describe("show days ", () => {
-    it("should show Lunes", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Lunes"));
+    describe("show days of the week", () => {
+      it("show Lunes", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Lunes")).toBeInTheDocument();
+      });
+      it("show Martes", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Martes")).toBeInTheDocument();
+      });
+      it("show Miercoles", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Miercoles")).toBeInTheDocument();
+      });
+      it("show Jueves", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Jueves")).toBeInTheDocument();
+      });
+      it("show Viernes", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Viernes")).toBeInTheDocument();
+      });
+      it("show Sabado", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Sabado")).toBeInTheDocument();
+      });
+      it("show Domingo", () => {
+        const { getByText } = wrapper;
+        expect(getByText("Domingo")).toBeInTheDocument();
+      });
     });
-    it("should show Martes", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Martes"));
-    });
-    it("should show Miercoles", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Miercoles"));
-    });
-    it("should show Jueves", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Jueves"));
-    });
-    it("should show Viernes", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Viernes"));
-    });
-    it("should show Sabado", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Sabado"));
-    });
-    it("should show Domingo", () => {
-      const { getAllByText } = wrapper;
-      act(() => jest.runAllTimers());
-      expect(getAllByText("Domingo"));
-    });
-  });
 
-  it("should show placeholder: --:--", () => {
-    const { getAllByText } = wrapper;
-    act(() => jest.runAllTimers());
-    expect(getAllByText("--:--")).toBeTruthy();
-  });
+    it("show placeholder: --:--", () => {
+      const { getAllByText } = wrapper;
+      expect(getAllByText("--:--")).toBeTruthy();
+    });
 
-  it("should show button edit", () => {
-    const { getAllByRole } = wrapper;
-    act(() => jest.runAllTimers());
-    expect(getAllByRole("button", "button", { name: "edit" }));
-  });
+    it("show button edit", () => {
+      const { getAllByRole } = wrapper;
+      expect(getAllByRole("button", "button", { name: "edit" }));
+    });
 
-  describe("when clicking the switch, edit button and done button", () => {
-    it("should show user, hour and successful registration/edition feedback", () => {
-      const { getAllByRole, getByText } = wrapper;
-      act(() => jest.runAllTimers());
-
-      const todaySwitch = getAllByRole("checkbox")[getToday()];
-      act(() => {
+    describe("when clicking the switch, edit and button done", () => {
+      let todaySwitch;
+      let editButton;
+      let doneButton;
+      beforeEach(() => {
+        todaySwitch = wrapper.getAllByRole("checkbox")[getToday()];
         fireEvent.click(todaySwitch);
       });
-      act(() => {
-        expect(getByText(getUserName()));
-        expect(getByText(getHour()));
-        expect(getAllByRole("alert"));
-        expect(getByText("Registro agregado"));
+      it("show user, hour and successful registration", () => {
+        const { getByText } = wrapper;
+        let hour = getHour();
+        let user = getUserName();
+        expect(getByText(hour)).toBeInTheDocument();
+        expect(getByText(user)).toBeInTheDocument();
+        expect(getByText("Registro agregado")).toBeInTheDocument();
       });
 
-      const editButton = getAllByRole("button")[getToday()];
-      act(() => {
+      it("show input text for manual register and button done", () => {
+        const { getAllByRole } = wrapper;
+        editButton = getAllByRole("button", "button", { name: "edit" })[
+          getToday()
+        ];
         fireEvent.click(editButton);
-      });
-      act(() => {
         expect(getAllByRole("textEdit"));
+        expect(getAllByRole("button", "button", { name: "done" }));
       });
 
-      const doneButton = getAllByRole("button", "button", { name: "done" })[
-        getToday()
-      ];
-      act(() => {
+      it("show successful edit", () => {
+        const { getByText, getAllByRole } = wrapper;
+        fireEvent.click(editButton);
+        doneButton = getAllByRole("button", "button", {
+          name: "done",
+        })[getToday()];
         fireEvent.click(doneButton);
-      });
-      act(() => {
-        expect(getByText(getUserName()));
-        expect(getByText(getHour()));
-        expect(getAllByRole("alert"));
-        expect(getByText("Registro editado"));
+        expect(getByText("Registro editado")).toBeInTheDocument();
       });
     });
   });

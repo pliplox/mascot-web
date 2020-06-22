@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+//Material
 import {
   makeStyles,
   Table,
@@ -13,11 +14,11 @@ import {
 } from "@material-ui/core";
 //SnackBar
 import { useSnackbar } from "notistack";
-//Personalizados
+//Component
 import { EditButton, EditTextField } from "./";
-//DATOS EJEMPLO
-import tableroMock from "./table";
-import usuariosTest from "./data";
+//Sample Data
+import tableMock from "./table";
+import userTest from "./data";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +38,7 @@ const Tablefed = (props) => {
   const h = `${date.getHours()}:${date.getMinutes()}`;
   const [day, setDay] = useState(d);
   const [hour, setHour] = useState(h);
-  const [tablero, setTablero] = useState(tableroMock);
+  const [tablero, setTablero] = useState(tableMock);
   const [open, setOpen] = useState(true);
   const [disabled, setDisabled] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -47,10 +48,10 @@ const Tablefed = (props) => {
 
   useEffect(() => {
     if (isEdit) {
-      //TODO: Campturar registro ingresado a mano.
+      //TODO: manual registration.
     } else {
-      tableroMock.forEach((element) => {
-        const today = tableroMock.find((x) => x.id === element.id);
+      tableMock.forEach((element) => {
+        const today = tableMock.find((x) => x.id === element.id);
         const { id } = today;
 
         if (day === id) {
@@ -95,11 +96,11 @@ const Tablefed = (props) => {
 
   const fed = (datenew, id) => {
     setHour(`${datenew.getHours()}:${datenew.getMinutes()}`);
-    tableroMock.forEach((element) => {
-      const today = tableroMock.find((x) => x.id === element.id);
+    tableMock.forEach((element) => {
+      const today = tableMock.find((x) => x.id === element.id);
 
       const usersRandoms =
-        usuariosTest[Math.floor(Math.random() * usuariosTest.length)];
+        userTest[Math.floor(Math.random() * userTest.length)];
 
       if (parseInt(id) === today.id) {
         today.disabledAm = true;
@@ -113,18 +114,18 @@ const Tablefed = (props) => {
   const edit = (id, name) => {
     if (name === "edit") {
       tablero.forEach((element) => {
-        const today = tableroMock.find((x) => x.id === element.id);
+        const today = tableMock.find((x) => x.id === element.id);
         if (parseInt(id) === today.id) {
-          today.edit = true; // icono
+          today.edit = true; // icon
           today.disabledAm = true; // switch
         }
       });
       setIsEdit(true);
     } else {
       tablero.forEach((element) => {
-        const today = tableroMock.find((x) => x.id === element.id);
+        const today = tableMock.find((x) => x.id === element.id);
         if (parseInt(id) === today.id) {
-          today.edit = false; // icono
+          today.edit = false; // icon
           today.disabledAm = true; // switch
         }
       });
@@ -133,10 +134,6 @@ const Tablefed = (props) => {
         { variant: "success" },
         { anchorOrigin: { vertical: "bottom", horizontal: "center" } }
       );
-
-      /*       setTimeout(() => {
-        closeSnackbar(key);
-      }, 1500); */
       setIsEdit(false);
     }
   };

@@ -34,7 +34,7 @@ const Fed = () => {
                 <h4>AM</h4>
               </Paper>
             </Grid>
-            <TableFed workingday="am" /> {/*params: Jornada (am) */}
+            <TableFed workingday="am" />
           </Grid>
           <Grid container item xs={12} sm={12} md={6}>
             <Grid item xs={12}>
@@ -43,7 +43,6 @@ const Fed = () => {
               </Paper>
             </Grid>
             <TableFed workingday="pm" hidden={["lg", "xl", "md"]} />
-            {/*params: Jornada (pm)  hidden={["lg", "xl", "md"]} */}
           </Grid>
         </Grid>
       </Container>

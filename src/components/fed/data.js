@@ -1,4 +1,4 @@
-const usuariosTest = [
+const userTest = [
   "juan perez",
 /*   "maria rosa",
   "michael jackson",
@@ -6,4 +6,4 @@ const usuariosTest = [
   "elmo chila", */
 ];
 
-export default usuariosTest;
+export default userTest;

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 /*Component */
 import { Sidelist } from "../sidebar";
 /*Material UI */
-import { makeStyles, Typography,Drawer,IconButton} from "@material-ui/core/";
+import { makeStyles, Typography, Drawer, IconButton } from "@material-ui/core/";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +43,7 @@ const Sidebar = (props) => {
     <Drawer open={open}>
       <div className={classes.containerTitle}>
         <Typography className={classes.titleSidebar} variant="h5" noWrap>
-          Mascot Web
+          MascotApp
           <IconButton
             className={classes.closeDrawe}
             edge="end"

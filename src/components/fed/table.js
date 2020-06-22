@@ -1,4 +1,4 @@
-const tableroMock = [
+const tableMock = [
   {
     id: 1,
     workingDayAm: "AM",
@@ -92,4 +92,4 @@ const tableroMock = [
   },
 ];
 
-export default tableroMock;
+export default tableMock;

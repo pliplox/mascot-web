@@ -1,25 +1,21 @@
 import React from "react";
-import { render, fireEvent, wait } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import { Navbar, ProfileMenu } from "./../";
-import { Sidebar } from "../../sidebar";
-let { asFragment } = render(<Navbar />);
+import { render, fireEvent } from "@testing-library/react";
+import { Navbar } from "./../";
 
 let wrapper;
 
 describe("Navbar", () => {
-  it("should render navbar", () => {
-    expect(asFragment()).toMatchSnapshot();
+  it("show render navbar", () => {
     expect(render(<Navbar />));
   });
 
   beforeEach(() => {
     wrapper = render(<Navbar />);
   });
-  
+
   it("show the app title", () => {
     const { getByText } = wrapper;
-    expect(getByText("Skoll Web")).toBeInTheDocument();
+    expect(getByText("MascotApp")).toBeInTheDocument();
   });
 
   it("show the icon profile", () => {
@@ -27,9 +23,12 @@ describe("Navbar", () => {
     expect(getByTestId("icon-profile")).toBeInTheDocument();
   });
 
-  it("should open profile menu", () => {
-    const { getByTestId } = wrapper;
-    fireEvent.click(getByTestId("icon-profile"), wait(render(<ProfileMenu />)));
+  it("show open profile menu", () => {
+    const { getByTestId, getByText } = wrapper;
+    fireEvent.click(getByTestId("icon-profile"));
+    expect(getByText("Profile")).toBeInTheDocument();
+    expect(getByText("My account")).toBeInTheDocument();
+    expect(getByText("Logout")).toBeInTheDocument();
   });
 
   it("show the icon drawer", () => {
@@ -37,8 +36,28 @@ describe("Navbar", () => {
     expect(getByTestId("drawer")).toBeInTheDocument();
   });
 
-  it("should open sideBar", () => {
-    const { getByTestId } = wrapper;
-    fireEvent.click(getByTestId("drawer"), wait(render(<Sidebar />)));
+  describe("When drawer is clicked", () => {
+    let drawerSettings;
+    beforeEach(() => {
+      fireEvent.click(wrapper.getByTestId("drawer"));
+      drawerSettings = wrapper.getByText("Configuracion");
+    });
+
+    it("shows sideBar elements", () => {
+      const { getByText } = wrapper;
+      expect(getByText("Alimentar")).toBeInTheDocument();
+      expect(getByText("Grupo")).toBeInTheDocument();
+      expect(drawerSettings).toBeInTheDocument();
+    });
+
+    describe("When drawer settings is clicked", () => {
+      beforeEach(() => {
+        fireEvent.click(drawerSettings);
+      });
+      it("show drawer settings", () => {
+        const { getByText } = wrapper;
+        expect(getByText("TimeZone")).toBeInTheDocument();
+      });
+    });
   });
 });

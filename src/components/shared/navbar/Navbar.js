@@ -1,16 +1,10 @@
 /*React */
 import React, { useState } from "react";
-
 /*Component */
 import { Sidebar } from "../sidebar";
 import { ProfileMenu } from "../navbar";
-
 /*Material UI */
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles,AppBar,Toolbar,IconButton,Typography } from "@material-ui/core/";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -36,14 +30,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     paddingTop: 10,
   },
-  containerTitle: {
-    height: 56,
-    [theme.breakpoints.up("sm")]: {
-      height: 64,
-    },
-    backgroundColor: "#1f285a",
-    paddingLeft: 20,
-  },
+  toolbar:{
+    backgroundColor: theme.palette.primary.dark,
+  }
 }));
 
 const Navbar = () => {
@@ -70,7 +59,7 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           <IconButton  
             data-testid="drawer"          
             edge="start"
@@ -82,7 +71,7 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Skoll Web
+            MascotApp
           </Typography>
           <div className={classes.grow} />
           <div>

@@ -5,13 +5,8 @@ import { isAuth } from "../../../context/AuthContext";
 /*Component */
 import { Sidebar } from "../sidebar";
 import { ProfileMenu } from "../navbar";
-
 /*Material UI */
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles,AppBar,Toolbar,IconButton,Typography } from "@material-ui/core/";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -82,7 +77,11 @@ const Navbar = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
+<<<<<<< HEAD
             Mascot Web
+=======
+            MascotApp
+>>>>>>> cea25befdada70c48a86bb5f97e912264b28dd58
           </Typography>
           <div className={classes.grow} />
           <div>

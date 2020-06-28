@@ -3,10 +3,7 @@ import React, { useState, useEffect } from "react";
 /*Component */
 import { Sidelist } from "../sidebar";
 /*Material UI */
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
+import { makeStyles, Typography, Drawer, IconButton } from "@material-ui/core/";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       height: 64,
     },
-    backgroundColor: "#1f285a",
+    backgroundColor: "#1c0128",
     paddingLeft: 20,
   },
   closeDrawe: {
@@ -45,8 +42,8 @@ const Sidebar = (props) => {
   return (
     <Drawer open={open}>
       <div className={classes.containerTitle}>
-        <Typography className={classes.titleSidebar} variant="h4" noWrap>
-          SkollApp
+        <Typography className={classes.titleSidebar} variant="h5" noWrap>
+          MascotApp
           <IconButton
             className={classes.closeDrawe}
             edge="end"

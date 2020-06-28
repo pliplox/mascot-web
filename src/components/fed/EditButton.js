@@ -1,8 +1,7 @@
 import React from "react";
 
-import IconButton from "@material-ui/core/IconButton";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
+import { IconButton } from "@material-ui/core/";
+import { DoneOutlineRounded, EditOutlined } from "@material-ui/icons/";
 
 const Editbutton = (props) => {
   const { edit, handleEdit, id } = props;
@@ -14,9 +13,9 @@ const Editbutton = (props) => {
           onClick={handleEdit}
           name="done"
           size="small"
-          color="secondary"
+          color="primary"
         >
-          <DoneOutlineRoundedIcon />
+          <DoneOutlineRounded />
         </IconButton>
       ) : (
         <IconButton
@@ -26,7 +25,7 @@ const Editbutton = (props) => {
           size="small"
           color="secondary"
         >
-          <EditOutlinedIcon />
+          <EditOutlined />
         </IconButton>
       )}
     </React.Fragment>

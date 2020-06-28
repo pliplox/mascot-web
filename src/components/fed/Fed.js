@@ -1,11 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-//Container
-import Container from "@material-ui/core/Container";
-//Grid
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-
+import { makeStyles, Container, Grid, Paper } from "@material-ui/core/";
 import { TableFed } from "./";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +20,7 @@ const Fed = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="xl" className={classes.root}>
+    <Container className={classes.root}>
       <Grid className={classes.title} item xs={12}>
         <Paper elevation={2} className={classes.paper}>
           <h1>Alimentacion</h1>
@@ -39,7 +33,7 @@ const Fed = () => {
               <h4>AM</h4>
             </Paper>
           </Grid>
-          <TableFed workingday="am" /> {/*params: Jornada (am) */}
+          <TableFed workingday="am" />
         </Grid>
         <Grid container item xs={12} sm={12} md={6}>
           <Grid item xs={12}>
@@ -48,7 +42,6 @@ const Fed = () => {
             </Paper>
           </Grid>
           <TableFed workingday="pm" hidden={["lg", "xl", "md"]} />
-          {/*params: Jornada (pm) */}
         </Grid>
       </Grid>
     </Container>

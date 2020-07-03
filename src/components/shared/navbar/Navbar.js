@@ -6,7 +6,13 @@ import { isAuth } from "../../../context/AuthContext";
 import { Sidebar } from "../sidebar";
 import { ProfileMenu } from "../navbar";
 /*Material UI */
-import { makeStyles,AppBar,Toolbar,IconButton,Typography } from "@material-ui/core/";
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+} from "@material-ui/core/";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -32,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     paddingTop: 10,
   },
-  toolbar:{
+  toolbar: {
     backgroundColor: theme.palette.primary.dark,
-  }
+  },
 }));
 
 const Navbar = ({ children }) => {
@@ -44,7 +50,7 @@ const Navbar = ({ children }) => {
 
   // const [isAuthenticated, setIsAuthenticated] = useState(true);
   const tokenId = localStorage.getItem("tokenId");
-  console.log(tokenId, 'Desde NAVBAR');
+  //console.log(tokenId, 'Desde NAVBAR');
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -66,8 +72,8 @@ const Navbar = ({ children }) => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <IconButton  
-            data-testid="drawer"          
+          <IconButton
+            data-testid="drawer"
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -77,11 +83,7 @@ const Navbar = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-<<<<<<< HEAD
-            Mascot Web
-=======
             MascotApp
->>>>>>> cea25befdada70c48a86bb5f97e912264b28dd58
           </Typography>
           <div className={classes.grow} />
           <div>

@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
-import StarBorder from "@material-ui/icons/StarBorder";
-import SettingsIcon from "@material-ui/icons/Settings";
-import PetsIcon from "@material-ui/icons/Pets";
-import GroupIcon from "@material-ui/icons/Group";
-import { makeStyles } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  makeStyles,
+  Divider,
+} from "@material-ui/core/";
+import {
+  ExpandLess,
+  ExpandMore,
+  Group,
+  StarBorder,
+  Pets,
+  Settings,
+} from "@material-ui/icons/";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -44,13 +48,13 @@ const Sidelist = (props) => {
       <List>
         <ListItem button onClick={handleCloseDrawer}>
           <ListItemIcon>
-            <PetsIcon />
+            <Pets />
           </ListItemIcon>
           <ListItemText primary="Alimentar" />
         </ListItem>
         <ListItem button onClick={handleCloseDrawer}>
           <ListItemIcon>
-            <GroupIcon />
+            <Group />
           </ListItemIcon>
           <ListItemText primary="Grupo" />
         </ListItem>
@@ -59,7 +63,7 @@ const Sidelist = (props) => {
       <List>
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <SettingsIcon />
+            <Settings />
           </ListItemIcon>
           <ListItemText primary="Configuracion" />
           {open ? <ExpandLess /> : <ExpandMore />}

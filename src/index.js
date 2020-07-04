@@ -1,26 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { MuiThemeProvider } from "@material-ui/core";
+import theme from "./utils/themeMui";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { indigo } from "@material-ui/core/colors";
-
-const theme = createMuiTheme({
-  palette: {
-    secondary: {
-      main: indigo.A100,
-      light: indigo[50],
-      dark: indigo[500],
-    },
-  },
-  spacing: value => value ** 2
-});
+import { SnackbarProvider } from "notistack";
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <SnackbarProvider
+      maxSnack={3}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+    >
+      <App />
+    </SnackbarProvider>
   </MuiThemeProvider>,
   document.getElementById("root")
 );

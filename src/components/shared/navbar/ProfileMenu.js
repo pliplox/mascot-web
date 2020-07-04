@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Menu, MenuItem } from "@material-ui/core/";
 
 const ProfileMenu = (props) => {
   const { handleProfileMenuClose, anchorEl } = props;
@@ -17,16 +16,16 @@ const ProfileMenu = (props) => {
 
   return (
     <Menu
-    id="primary-search-account-menu"
-    anchorEl={anchorEl}
-    keepMounted
-    open={Boolean(anchorEl)}
-    onClose={handleMenuClose}
-  >
-    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-  </Menu>
+      id="primary-search-account-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+    </Menu>
   );
 };
 

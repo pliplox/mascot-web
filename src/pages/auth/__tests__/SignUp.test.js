@@ -1,25 +1,35 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SignUp from '../SignUp';
 import { renderWithProvider } from '../../../utils/testing';
 
-const mockHistoryPush = jest.fn();
+// const mockHistoryPush = jest.fn();
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: mockHistoryPush
-  })
-}));
+// jest.mock('react-router-dom', () => ({
+//   ...jest.requireActual('react-router-dom'),
+//   useHistory: () => ({
+//     push: mockHistoryPush
+//   })
+// }));
 
 describe('SignUp', () => {
+  let testLocation;
+
   beforeEach(() =>
     renderWithProvider(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/signup']}>
         <SignUp />
-      </BrowserRouter>
+        <Route
+          path="*"
+          render={({ location }) => {
+            testLocation = location;
+            return null;
+          }}
+        />
+      </MemoryRouter>
     )
   );
 
@@ -51,7 +61,6 @@ describe('SignUp', () => {
 
       const signUpButton = screen.getByText('Registrarte');
       act(() => userEvent.click(signUpButton));
-      // screen.debug();
     });
   });
 
@@ -59,7 +68,7 @@ describe('SignUp', () => {
     it('redirects to sign in', () => {
       const linkElement = screen.getByText('Ya tienes una cuenta? Ingresa aquí');
       act(() => userEvent.click(linkElement));
-      expect(mockHistoryPush).toHaveBeenCalledWith('/signin');
+      expect(testLocation.pathname).toBe('/signin');
     });
   });
 });

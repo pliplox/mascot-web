@@ -3,6 +3,8 @@ import { render } from "@testing-library/react";
 import { AuthProvider } from "../context/AuthContext";
 import { SnackbarProvider } from "notistack";
 import { MuiThemeProvider } from "@material-ui/core";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 import theme from "./themeMui";
 import mediaQuery from "css-mediaquery";
 
@@ -31,3 +33,8 @@ export const setWindowWidth = (width) => {
   global.window.matchMedia = createMatchMedia(width);
 };
 
+const rand = () => {
+  return Math.random().toString(36).substr(2); // remove `0.`
+};
+
+export const tokenMock = () => rand() + rand();

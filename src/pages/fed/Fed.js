@@ -38,13 +38,12 @@ const Fed = () => {
   const { user } = useAuth();
   const [redirect, setRedirect] = useState({});
 
-  const userGroupL = user.groups.length;
-  const userPetsL = user.pets.length;
+  const userGroupL = user?.groups?.length || 0;
+  const userPetsL = user?.pets?.length || 0;
 
   useEffect(() => {
     let obj = { path: "", text: "", msg: "", isVisible: false };
     if (userGroupL === 0) {
-      console.log("useEffect Fed Grupo");
       obj = {
         path: "/grupos",
         text: "Ir a grupos",
@@ -54,7 +53,6 @@ const Fed = () => {
       };
       setRedirect(obj);
     } else if (userPetsL === 0) {
-      console.log("useEffect Fed Pets");
       obj = {
         path: "/mascotas",
         text: "Ir a mascotas",

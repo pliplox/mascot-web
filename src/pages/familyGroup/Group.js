@@ -26,7 +26,6 @@ import NewGroupModal from "../../components/familyGroup/NewGroupModal";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    //maxWidth: 500,
     backgroundColor: theme.palette.background.default,
   },
   paper: {
@@ -75,11 +74,7 @@ const Group = () => {
         </Typography>
       </Paper>
       <Paper className={classes.root}>
-        <List
-          component="div"
-          aria-labelledby="nested-list-subheader"
-          // className={classes.root}
-        >
+        <List component="div" aria-labelledby="nested-list-subheader">
           <ListItem className={classes.head}>
             <Typography
               variant="h5"
@@ -119,12 +114,7 @@ const Group = () => {
                 </ListItemIcon>
                 <ListItemText primary="Miembro 1" />
                 <ListItemSecondaryAction>
-                  <Checkbox
-                    edge="end"
-                    //onChange={}
-                    //checked={}
-                    //inputProps={{ "aria-labelledby": labelId }}
-                  />
+                  <Checkbox edge="end" />
                 </ListItemSecondaryAction>
               </ListItem>
             </List>

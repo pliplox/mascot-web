@@ -52,6 +52,13 @@ export const AuthProvider = ({ children }) => {
   const signUp = async (name, email, password) => {
     try {
       const response = await mascotapi.post('signup', { name, email, password });
+      console.log('RESPONSE');
+      console.log('RESPONSE');
+      console.log('RESPONSE');
+      console.log(response);
+      console.log('RESPONSE');
+      console.log('RESPONSE');
+      console.log('RESPONSE');
       return response;
     } catch (error) {
       console.log(error);

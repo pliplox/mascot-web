@@ -1,24 +1,20 @@
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import mascotapi from '../../../api/mascotapi';
 import SignUp from '../SignUp';
 import { renderWithProvider } from '../../../utils/testing';
 
-// const mockHistoryPush = jest.fn();
-
-// jest.mock('react-router-dom', () => ({
-//   ...jest.requireActual('react-router-dom'),
-//   useHistory: () => ({
-//     push: mockHistoryPush
-//   })
-// }));
+// Mock axios instance to check requests made with axios and set responses
+jest.mock('../../../api/mascotapi', () => ({
+  post: jest.fn()
+}));
 
 describe('SignUp', () => {
   let testLocation;
 
-  beforeEach(() =>
+  beforeEach(() => {
     renderWithProvider(
       <MemoryRouter initialEntries={['/signup']}>
         <SignUp />
@@ -30,8 +26,10 @@ describe('SignUp', () => {
           }}
         />
       </MemoryRouter>
-    )
-  );
+    );
+
+    mascotapi.post.mockImplementation(() => Promise.resolve());
+  });
 
   it('renders the correct elements', () => {
     expect(screen.getByRole('heading')).toHaveTextContent('Regístrate');
@@ -42,14 +40,28 @@ describe('SignUp', () => {
   });
 
   describe('when user set correct values', () => {
-    it('redirects to fed correctly', () => {
+    const token = 'fakeToken';
+    const userNameValue = 'username123';
+    const emailValue = 'email@domain.cl';
+    const passwordValue = 'awesome-password';
+
+    beforeEach(() =>
+      mascotapi.post.mockImplementation(
+        () =>
+          new Promise(resolve => {
+            resolve({
+              headers: { Authorization: token },
+              status: 201,
+              data: { email: emailValue, password: passwordValue }
+            });
+          })
+      )
+    );
+
+    it('register the user correctly', async () => {
       const userNameInput = screen.getByPlaceholderText('Ingresa tu nombre de usuario');
       const emailInput = screen.getByPlaceholderText('Ingresa tu correo');
       const passwordInput = screen.getByPlaceholderText('Ingresa tu contraseña');
-
-      const userNameValue = 'username123';
-      const emailValue = 'email@domain.cl';
-      const passwordValue = 'awesome-password';
 
       userEvent.type(userNameInput, userNameValue);
       userEvent.type(emailInput, emailValue);
@@ -61,6 +73,18 @@ describe('SignUp', () => {
 
       const signUpButton = screen.getByText('Registrarte');
       act(() => userEvent.click(signUpButton));
+
+      // test user signed up correctly
+      await waitFor(() => {
+        expect(mascotapi.post).toHaveBeenCalledWith(
+          'signup',
+          expect.objectContaining({
+            name: userNameValue,
+            email: emailValue,
+            password: passwordValue
+          })
+        );
+      });
     });
   });
 

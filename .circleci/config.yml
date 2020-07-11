@@ -11,14 +11,11 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+    branches:
+      only:
+        - master
+        - develop
 workflows:
-  version: 2      
-      #cron: "0 0 */6 ? * *" #0 0 * * *"
-      filters:
-        branches:
-          only:
-            - master
-            - develop
   build-and-test:
     jobs:
       - build-and-test

@@ -1,26 +1,26 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
-filter:
-  branches:
-    only:
-      - master
-      - develop
 jobs:
-  build:
-    working_directory: ~/mascotaweb
+  build-and-test:
+    executor:
+      name: node/default
     steps:
       - checkout
-      - restore_cache:
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install 
-      - save_cache: # special step to save the dependency cache
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - run: # run tests
-          name: test
-          command: yarn test
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+workflows:
+  version: 2
+  nightly:
+    - schedule:
+      filters:
+        cron: "0 0 */6 ? * *" #0 0 * * *"
+        branches:
+          only:
+            - master
+            - develop
+  build-and-test:
+    jobs:
+      - build-and-test

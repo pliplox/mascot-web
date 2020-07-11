@@ -12,9 +12,8 @@ jobs:
             - run: npm install
             - run: npm test
 workflows:
-  version: 2  
-    - schedule:
-      cron: "0 0 */6 ? * *" #0 0 * * *"
+  version: 2      
+      #cron: "0 0 */6 ? * *" #0 0 * * *"
       filters:
         branches:
           only:

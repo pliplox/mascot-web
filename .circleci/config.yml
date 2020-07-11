@@ -14,8 +14,8 @@ jobs:
 workflows:
   version: 2  
     - schedule:
+      cron: "0 0 */6 ? * *" #0 0 * * *"
       filters:
-        cron: "0 0 */6 ? * *" #0 0 * * *"
         branches:
           only:
             - master

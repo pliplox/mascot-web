@@ -11,11 +11,13 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+workflows:
+  version: 2  
+  filters:
     branches:
       only:
         - master
         - develop
-workflows:
   build-and-test:
     jobs:
       - build-and-test

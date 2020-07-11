@@ -12,8 +12,7 @@ jobs:
             - run: npm install
             - run: npm test
 workflows:
-  version: 2
-  nightly:
+  version: 2  
     - schedule:
       filters:
         cron: "0 0 */6 ? * *" #0 0 * * *"

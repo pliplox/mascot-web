@@ -1,7 +1,5 @@
 /*React */
 import React, { useState } from "react";
-import { isAuth } from "../../../context/AuthContext";
-
 /*Component */
 import { Sidebar } from "../sidebar";
 import { ProfileMenu } from "../navbar";

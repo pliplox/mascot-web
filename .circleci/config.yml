@@ -12,13 +12,6 @@ jobs:
             - run: npm install
             - run: npm test
 workflows:
-  version: 2
-  jobs:
-    filters:
-      branches:
-        only:
-          - master
-          - develop
   build-and-test:
     jobs:
       - build-and-test

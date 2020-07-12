@@ -1,16 +1,19 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import { Navbar } from "./../";
+
+import { renderWithProvider, tokenMock } from "../../../../utils/testing";
 
 let wrapper;
 
 describe("Navbar", () => {
   it("show render navbar", () => {
-    expect(render(<Navbar />));
+    expect(renderWithProvider(<Navbar />));
   });
 
   beforeEach(() => {
-    wrapper = render(<Navbar />);
+    localStorage.setItem("tokenId", tokenMock());
+    wrapper = renderWithProvider(<Navbar />);
   });
 
   it("show the app title", () => {
@@ -33,6 +36,7 @@ describe("Navbar", () => {
 
   it("show the icon drawer", () => {
     const { getByTestId } = wrapper;
+
     expect(getByTestId("drawer")).toBeInTheDocument();
   });
 
@@ -45,6 +49,7 @@ describe("Navbar", () => {
 
     it("shows sideBar elements", () => {
       const { getByText } = wrapper;
+
       expect(getByText("Alimentar")).toBeInTheDocument();
       expect(getByText("Grupo")).toBeInTheDocument();
       expect(drawerSettings).toBeInTheDocument();

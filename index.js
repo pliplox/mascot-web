@@ -4,7 +4,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-const publicipath = path.join(__dirname, "public");
+
 const buildpath = path.join(__dirname, "build");
 
 app.use(express.static(buildpath));

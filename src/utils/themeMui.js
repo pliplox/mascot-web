@@ -28,6 +28,9 @@ const theme = createMuiTheme({
         paddingBottom: "5vW",
       },
     },
+    MuiTypography: {
+      colorTextSecondary: "#2196f3",
+    },
   },
   spacing: (value) => value ** 2,
 });

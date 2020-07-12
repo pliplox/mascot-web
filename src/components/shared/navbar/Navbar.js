@@ -45,10 +45,8 @@ const Navbar = ({ children }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-
-  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
   const tokenId = localStorage.getItem("tokenId");
-  //console.log(tokenId, 'Desde NAVBAR');
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

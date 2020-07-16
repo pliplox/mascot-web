@@ -4,7 +4,7 @@ import { Navbar } from "./components/shared/navbar";
 import Fed from "./pages/fed/Fed";
 import Group from "./pages/familyGroup/Group";
 import Pet from "./pages/pet/Pet";
-import SignIn from "./pages/auth/SignIn";
+import { SignIn, SignUp } from './pages/auth';
 import PrivateRoute from "./components/private-route";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -27,6 +27,13 @@ const App = () => {
               }}
             />
             <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route
+              path="/signup"
+              render={() => {
+                return getToken ? <Redirect to="/alimentar" /> : <Redirect to="/signup" />;
+              }}
+            />
             <PrivateRoute path="/alimentar">
               <Fed />
             </PrivateRoute>

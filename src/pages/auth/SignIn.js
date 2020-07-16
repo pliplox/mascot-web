@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const SignIn = () => {
@@ -21,6 +21,9 @@ const SignIn = () => {
       <p>Password:</p>
       <input type="password" placeholder="***********" />
       <button type="submit">Entrar</button>
+      <br />
+      <br />
+      <Link to="/signup">Registrate aquí!</Link>
     </form>
   );
 };

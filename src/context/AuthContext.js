@@ -5,12 +5,14 @@ import React, {
   useMemo,
   useContext,
 } from "react";
+import mascotapi from '../api/mascotapi';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
+  const [authError, setAuthError] = useState();
 
   useEffect(() => {
     const loadUser = () => {
@@ -47,9 +49,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const signUp = async (name, email, password) => {
+    try {
+      const response = await mascotapi.post('signup', { name, email, password });
+      return response;
+    } catch (error) {
+      console.log(error);
+      return setAuthError(error.message);
+    }
+  };
+
   const value = useMemo(() => {
-    return { user, loadingUser, signIn };
-  }, [user, loadingUser]);
+    return { user, loadingUser, signIn, signUp, authError };
+  }, [user, loadingUser, authError]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

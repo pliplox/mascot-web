@@ -6,23 +6,32 @@
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
+    "axios": "^0.19.2",
     "css-mediaquery": "^0.1.2",
     "express": "^4.17.1",
     "notistack": "^0.9.17",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "swr": "^0.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:local": "PORT=8080 REACT_APP_ENV=local react-scripts start",
+    "start:dev": "PORT=8080 REACT_APP_ENV=staging react-scripts start",
+    "start:prod": "PORT=8080 REACT_APP_ENV=production react-scripts start",
+    "start:local:windows": "SET PORT=8080&&SET REACT_APP_ENV=local react-scripts start",
+    "start:dev:windows": "SET PORT=8080&&SET REACT_APP_ENV=staging& react-scripts start",
+    "start:prod:windows": "SET PORT=8080&&SET REACT_APP_ENV=production& react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test": "CI=true react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test:windows": "SET CI=true react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "yarn build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "heroku-postbuild": "yarn build",
+    "lint": "eslint src"
   },
   "browserslist": {
     "production": [
@@ -37,8 +46,19 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.3.0",
-    "jest-environment-jsdom-sixteen": "^1.0.3"
+    "@testing-library/user-event": "^12.0.11",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.0",
+    "eslint-plugin-material-ui": "^1.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "prettier": "^2.0.5"
   }
 }

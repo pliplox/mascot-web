@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core/";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import LanguageSelector from './language-selector';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -82,6 +83,7 @@ const Navbar = ({ children }) => {
             MascotApp
           </Typography>
           <div className={classes.grow} />
+          <LanguageSelector />
           <div>
             <IconButton
               data-testid="icon-profile"

@@ -1,0 +1,19 @@
+{
+  "signUp": {
+    "actions": {
+      "goToSignIn": "Ya tienes una cuenta? Ingresa aquí", "signUp": "Register"
+    },
+    "labels": {
+      "email": "Correo",
+      "password": "Contraseña",
+      "userName": "Nombre de usuario"
+    },
+    "minChar": "Mín. 6 caracteres",
+    "placeholders": {
+      "email": "Correo",
+      "password": "Contraseña",
+      "userName": "Ingresa tu nombre de usuario"
+    },
+    "title": "Registrar"
+  }
+}

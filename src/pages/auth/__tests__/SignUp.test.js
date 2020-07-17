@@ -32,11 +32,11 @@ describe('SignUp', () => {
   });
 
   it('renders the correct elements', () => {
-    expect(screen.getByRole('heading')).toHaveTextContent('Regístrate');
-    expect(screen.getByText('Nombre de usuario')).toBeInTheDocument();
-    expect(screen.getByText('Correo')).toBeInTheDocument();
-    expect(screen.getByText('Contraseña')).toBeInTheDocument();
-    expect(screen.getByText('Registrarte')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toHaveTextContent('signUp.title');
+    expect(screen.getByText('signUp.labels.userName')).toBeInTheDocument();
+    expect(screen.getByText('signUp.labels.email')).toBeInTheDocument();
+    expect(screen.getByText('signUp.labels.password')).toBeInTheDocument();
+    expect(screen.getByText('signUp.title')).toBeInTheDocument();
   });
 
   describe('when user set correct values', () => {
@@ -59,9 +59,9 @@ describe('SignUp', () => {
     );
 
     it('register the user correctly', async () => {
-      const userNameInput = screen.getByPlaceholderText('Ingresa tu nombre de usuario');
-      const emailInput = screen.getByPlaceholderText('Ingresa tu correo');
-      const passwordInput = screen.getByPlaceholderText('Ingresa tu contraseña');
+      const userNameInput = screen.getByPlaceholderText('signUp.placeholders.userName');
+      const emailInput = screen.getByPlaceholderText('signUp.placeholders.email');
+      const passwordInput = screen.getByPlaceholderText('signUp.placeholders.password');
 
       userEvent.type(userNameInput, userNameValue);
       userEvent.type(emailInput, emailValue);
@@ -71,7 +71,7 @@ describe('SignUp', () => {
       expect(emailInput).toHaveValue(emailValue);
       expect(passwordInput).toHaveValue(passwordValue);
 
-      const signUpButton = screen.getByText('Registrarte');
+      const signUpButton = screen.getByText('signUp.actions.signUp');
       act(() => userEvent.click(signUpButton));
 
       // test user signed up correctly
@@ -90,7 +90,7 @@ describe('SignUp', () => {
 
   describe('when user click on sign in link', () => {
     it('redirects to sign in', () => {
-      const linkElement = screen.getByText('Ya tienes una cuenta? Ingresa aquí');
+      const linkElement = screen.getByText('signUp.actions.goToSignIn');
       act(() => userEvent.click(linkElement));
       expect(testLocation.pathname).toBe('/signin');
     });

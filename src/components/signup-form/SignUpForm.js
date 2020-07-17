@@ -15,9 +15,8 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { randomAnimalImage } from '../../utils/random';
-
-const MIN_CHAR = 'Mínimo 6 caracteres';
 
 const useStyles = makeStyles(theme => ({
   formContainer: { display: 'flex', flexDirection: 'column', margin: theme.spacing(5) },
@@ -59,6 +58,7 @@ const SignUpForm = ({ onSubmit, loading, error }) => {
   } = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const { handleSubmit, register } = useForm();
+  const { t } = useTranslation();
 
   if (error) {
     // eslint-disable-next-line no-param-reassign
@@ -71,38 +71,38 @@ const SignUpForm = ({ onSubmit, loading, error }) => {
         <Card className={paperStyle}>
           <CardContent>
             <Typography component="h1" variant="h5" className={title}>
-              Regístrate
+              {t('signUp.title')}
             </Typography>
             <form autoComplete="off" className={formContainer} onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 name="username"
-                placeholder="Ingresa tu nombre de usuario"
+                placeholder={t('signUp.placeholders.userName')}
                 inputRef={register}
                 required
                 variant="outlined"
-                label="Nombre de usuario"
+                label={t('signUp.labels.userName')}
                 className={formField}
-                helperText={MIN_CHAR}
+                helperText={t('signUp.minChar')}
               />
               <TextField
                 name="email"
-                placeholder="Ingresa tu correo"
+                placeholder={t('signUp.placeholders.email')}
                 inputRef={register}
                 required
                 variant="outlined"
-                label="Correo"
+                label={t('signUp.labels.email')}
                 type="email"
                 className={formField}
               />
               <TextField
                 name="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder={t('signUp.placeholders.password')}
                 inputRef={register}
                 required
                 variant="outlined"
-                label="Contraseña"
+                label={t('signUp.labels.password')}
                 type={showPassword ? 'text' : 'password'}
-                helperText={MIN_CHAR}
+                helperText={t('signUp.minChar')}
                 className={formField}
                 InputProps={{
                   endAdornment: (
@@ -123,11 +123,11 @@ const SignUpForm = ({ onSubmit, loading, error }) => {
                 disabled={loading}
                 endIcon={loading && <CircularProgress size={25} />}
               >
-                Registrarte
+                {t('signUp.actions.signUp')}
               </Button>
             </form>
             <RouterLink className={signInLink} to="/signin">
-              Ya tienes una cuenta? Ingresa aquí
+              {t('signUp.actions.goToSignIn')}
             </RouterLink>
           </CardContent>
         </Card>

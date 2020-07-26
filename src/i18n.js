@@ -23,7 +23,7 @@ i18n
   .init({
     fallbackLng: 'es',
     // Logs info level to console output. Helps finding issues with loading not working.
-    debug: true,
+    debug: false,
     whitelist: languages.map(language => language.code),
 
     interpolation: {

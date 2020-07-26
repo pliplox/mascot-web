@@ -31,21 +31,16 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     try {
-      const response = {
-        data: {
-          email,
-          password,
-          groups: [],
-          pets: [],
-          tokenId: "cualquiercosa",
-        },
-      };
+      const response = await mascotapi.post('signin', { email, password });
+      console.log(response);
       setUser(response.data); // For now: all data is set to the user
       localStorage.setItem("tokenId", response.data.tokenId);
+      return response;
     } catch (error) {
       console.log(error);
+      return setAuthError(error.message);
     }
   };
 

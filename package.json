@@ -19,7 +19,8 @@
     "react-i18next": "^11.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "swr": "^0.2.3"
+    "swr": "^0.2.3",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,7 +32,7 @@
     "start:prod:windows": "SET PORT=8080&&SET REACT_APP_ENV=production& react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --env=jest-environment-jsdom-sixteen",
-    "test:windows": "SET CI=true react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test:windows": "SET CI=true &&react-scripts test --env=jest-environment-jsdom-sixteen",
     "test:watch": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "heroku-postbuild": "yarn build",

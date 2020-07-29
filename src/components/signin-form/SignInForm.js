@@ -13,6 +13,7 @@ import {
     Typography,
     Container,
 } from '@material-ui/core';
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -66,6 +67,7 @@ const SignInForm = ({ onSubmit, error }) => {
         link,
         errorMessage
     } = useStyles();
+    const { t } = useTranslation();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -89,13 +91,13 @@ const SignInForm = ({ onSubmit, error }) => {
                 <Card className={paperStyle}>
                     <CardContent>
                         <Typography component="h1" variant="h5" className={title}>
-                            Ingresar
+                            {t('signIn.title')}
                         </Typography>
                         <form className={formContainer} onSubmit={handleSubmit}>
                             <TextField
                                 name="email"
-                                label="Correo electrónico"
-                                placeholder="Ingresa tu correo"
+                                label={t('signIn.labels.email')}
+                                placeholder={t('signIn.placeholders.email')}
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -105,35 +107,37 @@ const SignInForm = ({ onSubmit, error }) => {
                             />
                             <TextField
                                 name="password"
-                                label="Contraseña"
-                                placeholder="Ingresa tu contraseña"
+                                label={t('signIn.labels.password')}
+                                placeholder={t('signIn.placeholders.password')}
                                 variant="outlined"
                                 margin="normal"
                                 required
                                 type="password"
                                 onChange={onChangePassword}
                             />
-                            <FormControlLabel
+                            {/* this feature is not available */}
+                            {/* <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
-                                label="Recordar"
-                            />
+                                label={t('signIn.labels.remember')}
+                            /> */}
                             <span className={errorMessage}>{error}</span>
                             <Button
                                 type="submit"
                                 variant="contained"
                                 color="primary"
                             >
-                                Entrar
+                                {t('signIn.actions.signIn')}
                             </Button>
                             <Grid container>
+                                {/* don't exist page */}
                                 {/* <Grid item xs>
                                     <RouterLink className={link} to="#">
-                                        ¿Se te olvidó tu contraseña?
+                                        {t('signIn.actions.forgotPassword')}
                                     </RouterLink>
                                 </Grid> */}
                                 <Grid item>
                                     <RouterLink className={link} to="/signup">
-                                        ¿No tienes una cuenta? Regístrate
+                                        {t('signIn.actions.goToSignUp')}
                                     </RouterLink>
                                 </Grid>
                             </Grid>

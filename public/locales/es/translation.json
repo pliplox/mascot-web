@@ -15,5 +15,22 @@
       "userName": "Ingresa tu nombre de usuario"
     },
     "title": "Registrar"
+  },
+  "signIn": {
+    "actions": {
+      "goToSignUp": "¿No tienes una cuenta? Regístrate", 
+      "forgotPassword": "¿Se te olvidó tu contraseña?",
+      "signIn": "Entrar"
+    },
+    "labels": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recordar"
+    },
+    "placeholders": {
+      "email": "Ingresa tu correo",
+      "password": "Ingresa tu contraseña"
+    },
+    "title": "Ingresar"
   }
 }

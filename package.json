@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "css-mediaquery": "^0.1.2",
     "express": "^4.17.1",
-    "i18next": "^19.6.1",
+    "i18next": "^19.6.3",
     "i18next-browser-languagedetector": "^5.0.0",
     "i18next-http-backend": "^1.0.17",
     "notistack": "^0.9.17",

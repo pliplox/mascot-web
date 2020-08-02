@@ -1,6 +1,6 @@
 {
   "name": "mascot-web",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",

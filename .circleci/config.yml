@@ -1,17 +1,32 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
+filter:
+  branches:
+    only:
+      - master
+      - develop
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  test:
+    working_directory: ~/mascot-web
+    docker:
+      - image: circleci/node:13.12.0
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache: # special step to save the dependency cache
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run: # run tests
+          name: test
+          command: yarn test
+
+# Orchestrate our job run sequence
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  test:
+    jobs:
+      - test

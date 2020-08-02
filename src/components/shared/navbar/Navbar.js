@@ -4,9 +4,16 @@ import React, { useState } from "react";
 import { Sidebar } from "../sidebar";
 import { ProfileMenu } from "../navbar";
 /*Material UI */
-import { makeStyles,AppBar,Toolbar,IconButton,Typography } from "@material-ui/core/";
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+} from "@material-ui/core/";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import LanguageSelector from './language-selector';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -30,15 +37,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     paddingTop: 10,
   },
-  toolbar:{
+  toolbar: {
     backgroundColor: theme.palette.primary.dark,
-  }
+  },
 }));
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  
+  const tokenId = localStorage.getItem("tokenId");
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -60,8 +69,8 @@ const Navbar = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <IconButton  
-            data-testid="drawer"          
+          <IconButton
+            data-testid="drawer"
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -74,6 +83,7 @@ const Navbar = () => {
             MascotApp
           </Typography>
           <div className={classes.grow} />
+          <LanguageSelector />
           <div>
             <IconButton
               data-testid="icon-profile"
@@ -94,8 +104,13 @@ const Navbar = () => {
           />
         </Toolbar>
       </AppBar>
-
-      <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />
+      {children}
+      {tokenId && (
+        <Sidebar
+          handleDrawerClose={handleDrawerClose}
+          openDrawer={openDrawer}
+        />
+      )}
     </div>
   );
 };

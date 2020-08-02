@@ -1,8 +1,28 @@
+@font-face {
+  font-family: 'PetitaBold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PetitaBold'), url('./fonts/PetitaBold.woff') format('woff');
+  }
+  
+  
+  @font-face {
+  font-family: 'PetitaLight';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PetitaLight'), url('./fonts/PetitaLight.woff') format('woff');
+  }
+  
+  
+  @font-face {
+  font-family: 'PetitaMedium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PetitaMedium'), url('./fonts/PetitaMedium.woff') format('woff');
+  }
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

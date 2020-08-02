@@ -1,4 +1,4 @@
-# Mascot Web
+# MascotApp
 
 Web application for Pliplox
 
@@ -13,6 +13,7 @@ Web application for Pliplox
 ### Working on the project
 
 * In the project directory: `>_ cd PROJECT_NAME`
+* You must have yarn installed: `>_ yarn install`
 * Run the development task: `yarn start`
 	* Starts the project at http://localhost:3000/
 	* Automatically restarts when any of your files change

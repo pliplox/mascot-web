@@ -1,35 +1,35 @@
-import { createMuiTheme } from "@material-ui/core";
-import { indigo } from "@material-ui/core/colors";
+import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
-    secondary: {
-      main: indigo.A100,
-      light: indigo[50],
-      dark: indigo[500],
-    },
     primary: {
-      main: "#460151",
-      light: "#42e8dc",
-      dark: "#380250",
+      main: '#41005f',
+      dark: '#380250',
+      white: '#D4D4D4'
     },
+    secondary: {
+      main: '#00e7ee'
+    }
   },
   typography: {
-    body1: {
-      fontWeight: 500,
-    },
+    fontFamily: ['PetitaMedium', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+    fontWeight: 500
   },
   overrides: {
     MuiContainer: {
       maxWidthXl: {
-        paddingTop: "1vh",
-        paddingLeft: "5vw",
-        paddingRight: "5vW",
-        paddingBottom: "5vW",
-      },
+        paddingTop: '1vh',
+        paddingLeft: '5vw',
+        paddingRight: '5vW',
+        paddingBottom: '5vW'
+      }
     },
+    MuiTypography: { colorTextSecondary: '#2196f3' },
+    MuiDialog: {
+      paper: { fontFamily: ['PetitaLight, Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',') }
+    }
   },
-  spacing: (value) => value ** 2,
+  spacing: value => value ** 2
 });
 
 export default theme;

@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useMemo,
-  useContext,
-} from "react";
+import React, { createContext, useState, useEffect, useMemo, useContext } from 'react';
 import mascotapi from '../api/mascotapi';
 
 const AuthContext = createContext(null);
@@ -16,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const loadUser = () => {
-      const getToken = localStorage.getItem("tokenId");
+      const getToken = localStorage.getItem('tokenId');
       if (!getToken) {
         setLoadingUser(false);
         return;
@@ -34,12 +28,10 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       const response = await mascotapi.post('signin', { email, password });
-      console.log(response);
-      setUser(response.data); // For now: all data is set to the user
-      localStorage.setItem("tokenId", response.data.tokenId);
+      setUser(response?.data); // For now: all data is set to the user
+      localStorage.setItem('tokenId', response?.data?.tokenId);
       return response;
     } catch (error) {
-      console.log(error);
       return setAuthError(error.message);
     }
   };
@@ -64,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be inside AuthContext provider");
+    throw new Error('useAuth must be inside AuthContext provider');
   }
   return context;
 };

@@ -6,8 +6,8 @@ import { SignInForm } from '../../components/signin-form';
 const SignIn = () => {
   const history = useHistory();
   const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
-  const { signIn, authError } = useAuth("");
+  const { from } = location.state || { from: { pathname: '/' } };
+  const { signIn, authError } = useAuth();
 
   const handleSignIn = async (email, password) => {
     try {
@@ -20,9 +20,7 @@ const SignIn = () => {
     }
   };
 
-  return (
-    <SignInForm onSubmit={handleSignIn} error={authError} />
-  );
+  return <SignInForm onSubmit={handleSignIn} error={authError} />;
 };
 
 export default SignIn;

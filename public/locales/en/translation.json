@@ -1,7 +1,8 @@
 {
   "signUp": {
     "actions": {
-      "goToSignIn": "Already have an account? Sign in here", "signUp": "Register"
+      "goToSignIn": "Already have an account? Sign in here",
+      "signUp": "Register"
     },
     "labels": {
       "email": "Email",
@@ -18,8 +19,8 @@
   },
   "signIn": {
     "actions": {
-      "goToSignUp": "Don't have an account? Sign Up", 
-      "forgotPassword" : "Forgot password?",
+      "goToSignUp": "Don't have an account? Sign Up here",
+      "forgotPassword": "Forgot password?, click here",
       "signIn": "Sing In"
     },
     "labels": {

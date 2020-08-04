@@ -1,7 +1,8 @@
 {
   "signUp": {
     "actions": {
-      "goToSignIn": "Ya tienes una cuenta? Ingresa aquí", "signUp": "Register"
+      "goToSignIn": "Ya tienes una cuenta? Ingresa aquí",
+      "signUp": "Registrar"
     },
     "labels": {
       "email": "Correo",
@@ -15,5 +16,22 @@
       "userName": "Ingresa tu nombre de usuario"
     },
     "title": "Registrar"
+  },
+  "signIn": {
+    "actions": {
+      "goToSignUp": "¿No tienes una cuenta? Regístrate aquí",
+      "forgotPassword": "¿Se te olvidó tu contraseña?, haz click aquí",
+      "signIn": "Entrar"
+    },
+    "labels": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recordar"
+    },
+    "placeholders": {
+      "email": "Ingresa tu correo",
+      "password": "Ingresa tu contraseña"
+    },
+    "title": "Ingresar"
   }
 }

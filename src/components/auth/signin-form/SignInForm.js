@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
+import { func, string } from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-import { randomAnimalImage } from '../../utils/random';
 import {
   makeStyles,
   Card,
   CardContent,
-  FormControlLabel,
   Button,
   TextField,
-  Checkbox,
   Grid,
   Typography,
   Container
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { GoogleSignIn } from '../../../pages/auth/google';
+import { randomAnimalImage } from '../../../utils/random';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -115,7 +115,7 @@ const SignInForm = ({ onSubmit, error }) => {
                 {t('signIn.actions.signIn')}
               </Button>
               <Grid container>
-                {/* don't exist page yet */}
+                {/* forgot password page doesn't exist yet */}
                 {/* <Grid item xs>
                                     <RouterLink className={link} to="#">
                                         {t('signIn.actions.forgotPassword')}
@@ -127,6 +127,9 @@ const SignInForm = ({ onSubmit, error }) => {
                   </RouterLink>
                 </Grid>
               </Grid>
+              <Grid item>
+                <GoogleSignIn />
+              </Grid>
             </form>
           </CardContent>
         </Card>
@@ -134,4 +137,14 @@ const SignInForm = ({ onSubmit, error }) => {
     </div>
   );
 };
+
+SignInForm.defaultProps = {
+  error: null
+};
+
+SignInForm.propTypes = {
+  error: string,
+  onSubmit: func.isRequired
+};
+
 export default SignInForm;

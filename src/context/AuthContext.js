@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useMemo, useContext } from 'react';
+import { node } from 'prop-types';
 import mascotapi from '../api/mascotapi';
 
 const AuthContext = createContext(null);
@@ -46,8 +47,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Authenticate with google
+   * @param {string} tokenId The token id from the google sign in response
+   *
+   */
+  const signInGoogle = async tokenId => {
+    try {
+      const response = await mascotapi.post('signingoogle', { token: tokenId });
+      const responseToken = response?.data?.token?.jwtoken;
+      setUser(response?.data?.user);
+      if (responseToken) localStorage.setItem('tokenId', responseToken);
+      return response;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('error', error);
+      return setAuthError(error?.message);
+    }
+  };
+
   const value = useMemo(() => {
-    return { user, loadingUser, signIn, signUp, authError };
+    return { user, loadingUser, signIn, signUp, authError, signInGoogle };
   }, [user, loadingUser, authError]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -59,4 +79,8 @@ export const useAuth = () => {
     throw new Error('useAuth must be inside AuthContext provider');
   }
   return context;
+};
+
+AuthProvider.propTypes = {
+  children: node.isRequired
 };

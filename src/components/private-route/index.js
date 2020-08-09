@@ -1,25 +1,24 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { node } from 'prop-types';
+import { Route, useHistory } from 'react-router-dom';
+import isSignedIn from '../../utils/isSignedIn';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const tokenId = localStorage.getItem("tokenId");
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        tokenId ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/signin",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!isSignedIn()) history.push('/signin');
+  }, [history]);
+
+  return <Route {...rest}>{children}</Route>;
+};
+
+PrivateRoute.defaultProps = {
+  children: undefined
+};
+
+PrivateRoute.propTypes = {
+  children: node
 };
 
 export default PrivateRoute;

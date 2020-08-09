@@ -3,14 +3,22 @@ import { renderWithProvider } from '../../../utils/testing';
 import { MemoryRouter, Route } from 'react-router-dom';
 import SignIn from '../SignIn';
 import mascotapi from '../../../api/mascotapi';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as reactGoogleLogin from 'react-google-login';
+
+jest.mock('react-google-login', () => ({
+  useGoogleLogin: jest.fn(() => {
+    return { signIn: jest.fn(), loaded: true };
+  })
+}));
 
 jest.mock('../../../api/mascotapi', () => ({
   post: jest.fn()
 }));
 
 describe('SignIn', () => {
+  afterEach(() => cleanup());
   let testLocation;
   beforeEach(() => {
     renderWithProvider(
@@ -88,6 +96,14 @@ describe('SignIn', () => {
       const linkElement = screen.getByText('signIn.actions.goToSignUp');
       act(() => userEvent.click(linkElement));
       expect(testLocation.pathname).toBe('/signup');
+    });
+  });
+
+  describe('when user clicks on sign in with google', () => {
+    it('calls google sign in hook', async () => {
+      const googleButton = screen.getByText('auth.actions.signInGoogle');
+      act(() => userEvent.click(googleButton));
+      expect(reactGoogleLogin.useGoogleLogin).toHaveBeenCalled();
     });
   });
 });

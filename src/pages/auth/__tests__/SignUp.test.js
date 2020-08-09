@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as reactGoogleLogin from 'react-google-login';
 import mascotapi from '../../../api/mascotapi';
 import SignUp from '../SignUp';
 import { renderWithProvider } from '../../../utils/testing';
@@ -9,6 +10,13 @@ import { renderWithProvider } from '../../../utils/testing';
 // Mock axios instance to check requests made with axios and set responses
 jest.mock('../../../api/mascotapi', () => ({
   post: jest.fn()
+}));
+
+//  Mock all react google login to check if it is called
+jest.mock('react-google-login', () => ({
+  useGoogleLogin: jest.fn(() => {
+    return { signIn: jest.fn(), loaded: true };
+  })
 }));
 
 describe('SignUp', () => {
@@ -93,6 +101,14 @@ describe('SignUp', () => {
       const linkElement = screen.getByText('signUp.actions.goToSignIn');
       act(() => userEvent.click(linkElement));
       expect(testLocation.pathname).toBe('/signin');
+    });
+  });
+
+  describe('when user clicks on sign in with google', () => {
+    it('calls google sign in hook', async () => {
+      const googleButton = screen.getByText('auth.actions.signInGoogle');
+      act(() => userEvent.click(googleButton));
+      expect(reactGoogleLogin.useGoogleLogin).toHaveBeenCalled();
     });
   });
 });

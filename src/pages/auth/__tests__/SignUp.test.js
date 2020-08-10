@@ -12,7 +12,7 @@ jest.mock('../../../api/mascotapi', () => ({
   post: jest.fn()
 }));
 
-//  Mock all react google login to check if it is called
+// Mock all react google login library to check if useGoogleLogin is called
 jest.mock('react-google-login', () => ({
   useGoogleLogin: jest.fn(() => {
     return { signIn: jest.fn(), loaded: true };

@@ -39,7 +39,7 @@ const App = () => {
                 {/* Private routes */}
                 <PrivateRoute path="/alimentar" component={Fed} />
                 <PrivateRoute path="/grupos" component={Group} />
-                <PrivateRougit te path="/mascotas" component={Pet} />
+                <PrivateRoute te path="/mascotas" component={Pet} />
                 {/* End of private routes */}
 
                 <Route path="*" component={() => '404 Not found'} />

@@ -1,4 +1,7 @@
 {
+  "auth": {
+    "actions": { "signInGoogle": "Sign in with Google" }
+  },
   "signUp": {
     "actions": {
       "goToSignIn": "Already have an account? Sign in here",
@@ -11,9 +14,9 @@
     },
     "minChar": "Mín. 6 char",
     "placeholders": {
-      "email": "Correo",
-      "password": "Contraseña",
-      "userName": "Ingresa tu nombre de usuario"
+      "email": "Email",
+      "password": "Password",
+      "userName": "Type your user name"
     },
     "title": "Sign Up"
   },

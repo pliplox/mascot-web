@@ -1,7 +1,7 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core';
 import { SnackbarProvider } from 'notistack';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import theme from './utils/themeMui';
 import { Navbar } from './components/shared/navbar';
 import Fed from './pages/fed/Fed';
@@ -12,7 +12,7 @@ import PrivateRoute from './components/private-route';
 import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
-  const getToken = localStorage.getItem('tokenId');
+  const tokenId = localStorage.getItem('tokenId');
   return (
     <MuiThemeProvider theme={theme}>
       <SnackbarProvider
@@ -29,27 +29,18 @@ const App = () => {
                 <Route
                   exact
                   path="/"
-                  render={() => {
-                    return getToken ? <Redirect to="/alimentar" /> : <Redirect to="/signin" />;
-                  }}
+                  render={() =>
+                    tokenId ? <Redirect to="/alimentar" /> : <Redirect to="/signin" />
+                  }
                 />
                 <Route path="/signin" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
-                <Route
-                  path="/signup"
-                  render={() => {
-                    return getToken ? <Redirect to="/alimentar" /> : <Redirect to="/signup" />;
-                  }}
-                />
-                <PrivateRoute path="/alimentar">
-                  <Fed />
-                </PrivateRoute>
-                <PrivateRoute path="/grupos">
-                  <Group />
-                </PrivateRoute>
-                <PrivateRoute path="/mascotas">
-                  <Pet />
-                </PrivateRoute>
+
+                {/* Private routes */}
+                <PrivateRoute path="/alimentar" component={Fed} />
+                <PrivateRoute path="/grupos" component={Group} />
+                <PrivateRoute te path="/mascotas" component={Pet} />
+                {/* End of private routes */}
 
                 <Route path="*" component={() => '404 Not found'} />
               </Switch>

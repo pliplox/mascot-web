@@ -1,4 +1,7 @@
 {
+  "auth": {
+    "actions": { "signInGoogle": "Ingresa con google" }
+  },
   "signUp": {
     "actions": {
       "goToSignIn": "Ya tienes una cuenta? Ingresa aquí",

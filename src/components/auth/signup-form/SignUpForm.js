@@ -16,7 +16,8 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { randomAnimalImage } from '../../utils/random';
+import { randomAnimalImage } from '../../../utils/random';
+import { GoogleSignIn } from '../../../pages/auth/google';
 
 const useStyles = makeStyles(theme => ({
   formContainer: { display: 'flex', flexDirection: 'column', margin: theme.spacing(5) },
@@ -125,6 +126,7 @@ const SignUpForm = ({ onSubmit, loading, error }) => {
               >
                 {t('signUp.actions.signUp')}
               </Button>
+              <GoogleSignIn className={formField} />
             </form>
             <RouterLink className={signInLink} to="/signin">
               {t('signUp.actions.goToSignIn')}

@@ -1,29 +1,34 @@
 import React from 'react';
-import { renderWithProvider } from '../../../utils/testing';
-import { MemoryRouter, Route } from 'react-router-dom';
-import SignIn from '../SignIn';
-import mascotapi from '../../../api/mascotapi';
+import { BrowserRouter } from 'react-router-dom';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as reactGoogleLogin from 'react-google-login';
+import { renderWithProvider } from '../../../utils/testing';
+import mascotapi from '../../../api/mascotapi';
+import SignIn from '../SignIn';
 
 jest.mock('../../../api/mascotapi', () => ({
   post: jest.fn()
 }));
 
+// Mock all react google login library to check if useGoogleLogin
+jest.mock('react-google-login', () => ({
+  useGoogleLogin: jest.fn(() => {
+    return { signIn: jest.fn(), loaded: true };
+  })
+}));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({ push: jest.fn() })
+}));
+
 describe('SignIn', () => {
-  let testLocation;
   beforeEach(() => {
     renderWithProvider(
-      <MemoryRouter initialEntries={['/signin']}>
+      <BrowserRouter>
         <SignIn />
-        <Route
-          path="*"
-          render={({ location }) => {
-            testLocation = location;
-            return null;
-          }}
-        />
-      </MemoryRouter>
+      </BrowserRouter>
     );
     mascotapi.post.mockImplementation(() => Promise.resolve());
   });
@@ -87,7 +92,15 @@ describe('SignIn', () => {
     it('redirects to sign up', () => {
       const linkElement = screen.getByText('signIn.actions.goToSignUp');
       act(() => userEvent.click(linkElement));
-      expect(testLocation.pathname).toBe('/signup');
+      expect(window.location.pathname).toBe('/signup');
+    });
+  });
+
+  describe('when user clicks on sign in with google', () => {
+    it('calls google sign in hook', () => {
+      const googleButton = screen.getByText('auth.actions.signInGoogle');
+      act(() => userEvent.click(googleButton));
+      expect(reactGoogleLogin.useGoogleLogin).toHaveBeenCalled();
     });
   });
 });

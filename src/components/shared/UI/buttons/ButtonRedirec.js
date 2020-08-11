@@ -42,7 +42,7 @@ const ButtonRedirec = (props) => {
   );
 };
 
-ButtonRedirec.prototype = {
+ButtonRedirec.propTypes = {
   severity: PropTypes.string.isRequired,
   size: PropTypes.string,
   path: PropTypes.string.isRequired,

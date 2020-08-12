@@ -26,4 +26,18 @@ mascotapi.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+mascotapi.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    const { status } = error.response;
+
+    if (status === 400 || status === 401 || status === 403 || status === 404 || status === 500) {
+      return error.response;
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default mascotapi;

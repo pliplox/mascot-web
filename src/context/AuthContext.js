@@ -30,7 +30,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await mascotapi.post('signin', { email, password });
       setUser(response?.data); // For now: all data is set to the user
-      localStorage.setItem('tokenId', response?.data?.tokenId);
+      if (!response?.data.ok) {
+        setAuthError(response.data.err); // FIXME: err -> message
+      } else {
+        localStorage.setItem('tokenId', response?.data?.tokenId);
+      }
       return response;
     } catch (error) {
       return setAuthError(error.message);

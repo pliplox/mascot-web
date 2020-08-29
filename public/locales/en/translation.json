@@ -1,7 +1,11 @@
 {
+  "auth": {
+    "actions": { "signInGoogle": "Sign in with Google" }
+  },
   "signUp": {
     "actions": {
-      "goToSignIn": "Already have an account? Sign in here", "signUp": "Register"
+      "goToSignIn": "Already have an account? Sign in here",
+      "signUp": "Register"
     },
     "labels": {
       "email": "Email",
@@ -10,10 +14,27 @@
     },
     "minChar": "Mín. 6 char",
     "placeholders": {
-      "email": "Correo",
-      "password": "Contraseña",
-      "userName": "Ingresa tu nombre de usuario"
+      "email": "Email",
+      "password": "Password",
+      "userName": "Type your user name"
     },
     "title": "Sign Up"
+  },
+  "signIn": {
+    "actions": {
+      "goToSignUp": "Don't have an account? Sign Up here",
+      "forgotPassword": "Forgot password?, click here",
+      "signIn": "Sing In"
+    },
+    "labels": {
+      "email": "Email Address",
+      "password": "Password",
+      "remember": "Remember me"
+    },
+    "placeholders": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "title": "Sign In"
   }
 }

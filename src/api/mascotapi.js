@@ -31,12 +31,11 @@ mascotapi.interceptors.response.use(
     return response;
   },
   error => {
-    const { status } = error.response;
-
-    if (status === 400 || status === 401 || status === 403 || status === 404 || status === 500) {
+    try {
       return error.response;
+    } catch (err) {
+      return Promise.reject(err);
     }
-    return Promise.reject(error);
   }
 );
 

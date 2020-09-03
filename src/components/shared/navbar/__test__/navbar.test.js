@@ -1,12 +1,8 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { Navbar } from './../';
+import Navbar from '../Navbar';
 
 import { renderWithProvider, tokenMock } from '../../../../utils/testing';
-
-jest.mock('../../../../utils/isSignedIn', () => {
-  return false;
-});
 
 let wrapper;
 
@@ -16,6 +12,7 @@ describe('Navbar', () => {
   });
 
   beforeEach(() => {
+    localStorage.clear();
     localStorage.setItem('tokenId', tokenMock());
     wrapper = renderWithProvider(<Navbar />);
   });
@@ -40,7 +37,6 @@ describe('Navbar', () => {
 
   it('show the icon drawer', () => {
     const { getByTestId } = wrapper;
-
     expect(getByTestId('drawer')).toBeInTheDocument();
   });
 
@@ -67,6 +63,21 @@ describe('Navbar', () => {
         const { getByText } = wrapper;
         expect(getByText('TimeZone')).toBeInTheDocument();
       });
+    });
+  });
+
+  describe('When user is not sign in', () => {
+    localStorage.clear();
+
+    it('Icon profile not visible', () => {
+      localStorage.clear();
+      const iconProfile = wrapper.queryByText('icon-profile');
+      expect(iconProfile).not.toBeInTheDocument();
+    });
+
+    it('Icon drawer not visible', () => {
+      const drawer = wrapper.queryByText('drawer');
+      expect(drawer).not.toBeInTheDocument();
     });
   });
 });

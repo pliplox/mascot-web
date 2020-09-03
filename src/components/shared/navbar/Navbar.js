@@ -1,5 +1,5 @@
 /*React */
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 /*Component */
 import { Sidebar } from '../sidebar';
 import { ProfileMenu } from '../navbar';
@@ -25,7 +25,8 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block'
-    }
+    },
+    marginLeft: theme.spacing(3)
   },
   titleSidebar: {
     color: 'white',
@@ -41,8 +42,6 @@ const Navbar = ({ children }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-
-  const tokenId = localStorage.getItem('tokenId');
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
@@ -64,7 +63,7 @@ const Navbar = ({ children }) => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          {!isSignedIn ? (
+          {isSignedIn && (
             <IconButton
               data-testid="drawer"
               edge="start"
@@ -75,13 +74,13 @@ const Navbar = ({ children }) => {
             >
               <MenuIcon />
             </IconButton>
-          ) : null}
+          )}
           <Typography className={classes.title} variant="h6" noWrap>
             MascotApp
           </Typography>
           <div className={classes.grow} />
           <LanguageSelector />
-          {!isSignedIn ? (
+          {isSignedIn && (
             <div>
               <IconButton
                 data-testid="icon-profile"
@@ -96,12 +95,14 @@ const Navbar = ({ children }) => {
                 <AccountCircle />
               </IconButton>
             </div>
-          ) : null}
-          <ProfileMenu handleProfileMenuClose={handleProfileMenuClose} anchorEl={anchorEl} />
+          )}
+          {isSignedIn && (
+            <ProfileMenu handleProfileMenuClose={handleProfileMenuClose} anchorEl={anchorEl} />
+          )}
         </Toolbar>
       </AppBar>
       {children}
-      {tokenId && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
+      {isSignedIn && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
     </div>
   );
 };

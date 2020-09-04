@@ -16,7 +16,7 @@ const SignIn = () => {
 
   const handleSignIn = async (email, password) => {
     try {
-      const response = signIn(email, password);
+      const response = await signIn(email, password);
       if (response?.status === 200) {
         history.replace(from);
       }

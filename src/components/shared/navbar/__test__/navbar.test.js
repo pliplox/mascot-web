@@ -66,16 +66,15 @@ describe('Navbar', () => {
     });
   });
 
-  describe('When user is not sign in', () => {
+  describe('When user is not signed in', () => {
     localStorage.clear();
 
-    it('Icon profile not visible', () => {
-      localStorage.clear();
+    it('does not show the profile icon ', () => {
       const iconProfile = wrapper.queryByText('icon-profile');
       expect(iconProfile).not.toBeInTheDocument();
     });
 
-    it('Icon drawer not visible', () => {
+    it('does not show the drawer icon', () => {
       const drawer = wrapper.queryByText('drawer');
       expect(drawer).not.toBeInTheDocument();
     });

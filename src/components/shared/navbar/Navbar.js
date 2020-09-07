@@ -63,7 +63,7 @@ const Navbar = ({ children }) => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          {isSignedIn && (
+          {isSignedIn() && (
             <IconButton
               data-testid="drawer"
               edge="start"
@@ -80,7 +80,7 @@ const Navbar = ({ children }) => {
           </Typography>
           <div className={classes.grow} />
           <LanguageSelector />
-          {isSignedIn && (
+          {isSignedIn() && (
             <div>
               <IconButton
                 data-testid="icon-profile"
@@ -96,13 +96,13 @@ const Navbar = ({ children }) => {
               </IconButton>
             </div>
           )}
-          {isSignedIn && (
+          {isSignedIn() && (
             <ProfileMenu handleProfileMenuClose={handleProfileMenuClose} anchorEl={anchorEl} />
           )}
         </Toolbar>
       </AppBar>
       {children}
-      {isSignedIn && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
+      {isSignedIn() && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
     </div>
   );
 };

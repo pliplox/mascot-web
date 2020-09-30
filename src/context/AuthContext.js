@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       const response = await mascotapi.post('signin', { email, password });
       setUser(response?.data); // For now: all data is set to the user
       if (response.status >= 400) {
-        setAuthError(response.data.err || response.data.message); // TODO: change this when backend messages has been standarized
+        setAuthError(response.data.message); // TODO: change this when backend messages has been standarized
       } else {
         localStorage.setItem('tokenId', response?.data?.tokenId);
       }
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   const signUp = async (name, email, password) => {
     try {
       const response = await mascotapi.post('signup', { name, email, password });
-      if (response.status >= 400) setAuthError(response.data.err || response.data.message); // TODO: change this when backend messages has been standarized
+      if (response.status >= 400) setAuthError(response.data.message); // TODO: change this when backend messages has been standarized
       return response;
     } catch (error) {
       console.log(error);
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
       const response = await mascotapi.post('signingoogle', { token: tokenId });
       const responseToken = response?.data?.token?.jwtoken;
       setUser(response?.data?.user);
-      if (response.status >= 400) setAuthError(response.data.err || response.data.message); // TODO: change this when backend messages has been standarized
+      if (response.status >= 400) setAuthError(response.data.message); // TODO: change this when backend messages has been standarized
 
       if (responseToken) localStorage.setItem('tokenId', responseToken);
       return response;

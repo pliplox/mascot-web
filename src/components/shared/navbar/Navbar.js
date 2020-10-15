@@ -8,7 +8,7 @@ import { makeStyles, AppBar, Toolbar, IconButton, Typography } from '@material-u
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LanguageSelector from './language-selector';
-import isSignedIn from '../../../utils/isSignedIn';
+import { useAuth } from '../../../context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -42,6 +42,7 @@ const Navbar = ({ children }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const { userToken } = useAuth();
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +64,7 @@ const Navbar = ({ children }) => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          {isSignedIn() && (
+          {userToken && (
             <IconButton
               data-testid="drawer"
               edge="start"
@@ -80,7 +81,7 @@ const Navbar = ({ children }) => {
           </Typography>
           <div className={classes.grow} />
           <LanguageSelector />
-          {isSignedIn() && (
+          {userToken && (
             <div>
               <IconButton
                 data-testid="icon-profile"
@@ -94,15 +95,13 @@ const Navbar = ({ children }) => {
               >
                 <AccountCircle />
               </IconButton>
+              <ProfileMenu handleProfileMenuClose={handleProfileMenuClose} anchorEl={anchorEl} />
             </div>
-          )}
-          {isSignedIn() && (
-            <ProfileMenu handleProfileMenuClose={handleProfileMenuClose} anchorEl={anchorEl} />
           )}
         </Toolbar>
       </AppBar>
       {children}
-      {isSignedIn() && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
+      {userToken && <Sidebar handleDrawerClose={handleDrawerClose} openDrawer={openDrawer} />}
     </div>
   );
 };

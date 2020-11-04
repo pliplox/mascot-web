@@ -26,4 +26,17 @@ mascotapi.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+mascotapi.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    try {
+      return error.response;
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+);
+
 export default mascotapi;
